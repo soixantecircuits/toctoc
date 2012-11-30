@@ -1,0 +1,46 @@
+ #! /bin/bash
+# Copyright (c) 2012 Soixante circuits
+# All rights reserved.
+#
+# Author: Emmanuel Geoffray, 2012
+#
+# Please send feedback to emmanuel@soixantecircuits.fr
+#
+# /etc/init.d/toctoc
+#
+### BEGIN INIT INFO
+# Provides:           toctoc
+# Required-Start:
+# Should-Start:
+# Required-Stop:
+# Should-Stop:
+# Default-Start:      2 3 4 5
+# Default-Stop:       
+# Short-Description:  Tweets when you push a button
+# Description:        Tweets when you push a push-button connected to a GPIO port
+### END INIT INFO
+
+
+case "$1" in
+  start)
+    echo "Starting server"
+    # Start the daemon
+    python /usr/share/toctoc/toctoc.py start
+    ;;
+  stop)
+    echo "Stopping server"
+    # Stop the daemon
+    python /usr/share/toctoc/toctoc.py stop
+    ;;
+  restart)
+    echo "Restarting server"
+    python /usr/share/toctoc/toctoc.py restart
+    ;;
+  *)
+    # Refuse to do other stuff
+    echo "Usage: /etc/init.d/toctoc.sh {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0
