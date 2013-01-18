@@ -21,7 +21,7 @@ This tutorial will cover everything to do that! We'll go through
 
 ## Get Raspbian on a SD card
 
-Raspberry py comes has an SD card reader in place of a hard drive you'll find on a normal computer. However it works the same, your Raspberry Pi will lauch the Operating System on your SD card.
+Raspberry Pi has an SD card reader in place of a hard drive you'll find on a normal computer. However it works the same, your Raspberry Pi will lauch the Operating System on your SD card.
 The Raspberry Pi Foundation has made available a version linux for the Raspberry Pi, it's a derivate of debian and is called Raspbian.
 If you don't have a preloaded SD card with Raspbian, you need to download and write your SD card. The Raspberry Pi has written a [guide for beginners](http://elinux.org/RPi_Easy_SD_Card_Setup) that has instructions to write the SD card from Windows, OS X or Linux.
 
@@ -29,8 +29,30 @@ If you don't have a preloaded SD card with Raspbian, you need to download and wr
 
 In this tutorial, we will always connect to the raspberry's remotely using [ssh](https://en.wikipedia.org/wiki/Secure_Shell)
 
-Our favourite text editor is vim. If you don't know vim yet, follow vim's own quick interactive tutorial by typing *vimtutor* in your terminal 
+Our favourite text editor is vim. If you don't know vim yet, follow vim's own quick interactive tutorial by typing *vimtutor* in your terminal. But you're free to use emacs or nano. 
 
 It's not mandatory to use git in this tutorial, but if you want to learn, follow the steps in [tryGit](http://try.github.com)
 
+## Give ssh a try
+
+Connect you Raspberry Pi to the network, and access it remotely via ssh. By default, the hostname is 'raspberrypi' and user/password is pi/raspberry
+```
+$ ssh pi@raspberrypi
+```
+
+If you don't have a DNS resolver on your network, you computer can't find raspberrypi.
+You can use [avahi](https://en.wikipedia.org/wiki/Avahi_%28software%29).
+Plug a keyboard and a screen to your Raspberry Pi, login and then install avahi-daemon
+```
+$ sudo apt-get update
+$ sudo apt-get install avahi-daemon
+```
+
+You can now go back to your computer and run
+```
+$ ssh pi@raspberrypi.local
+```
+
 # Monitor a hashtag with the Twitter API
+
+

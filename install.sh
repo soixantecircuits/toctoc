@@ -3,6 +3,7 @@ TOCTOC_PATH="/usr/share/toctoc"
 TOCTOC_LOG_PATH="/var/log/toctoc"
 
 toctoc_install() {
+  # TODO: install python libs: twitter, GPIO
   mkdir $TOCTOC_PATH
   cp toctoc/toctoc.py $TOCTOC_PATH
 	echo "Copied the toctoc.py script to $TOCTOC_PATH"
