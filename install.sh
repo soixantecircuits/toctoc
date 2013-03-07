@@ -6,6 +6,7 @@ toctoc_install() {
   # TODO: install python libs: twitter, GPIO
   mkdir $TOCTOC_PATH
   cp toctoc/toctoc.py $TOCTOC_PATH
+  cp toctoc/ding.mp3 $TOCTOC_PATH
 	echo "Copied the toctoc.py script to $TOCTOC_PATH"
   mkdir $TOCTOC_LOG_PATH
   touch /var/log/toctoc/toctoc.log
