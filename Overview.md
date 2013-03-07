@@ -78,6 +78,14 @@ We have no all the tools to start tweeting!
 
 ```
 $ git clone https://github.com/soixantecircuits/toctoc.git
+$ cd toctoc
+$ sudo sh install.sh toctoc
+$ cd tests
+$ python tweet.py
+```
+You are now running the test script that tweets with your account. Nothing more. Nthing less.
+As it's the first time you are tweeting within the application, you need to authorize it.
+Follow the instructions that a
 
 
 $ cd ..
@@ -90,5 +98,5 @@ $ python setup.py
 
 * script to test tweet
 * script to test button
-
+* add git etc to the script install.sh
 

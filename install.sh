@@ -23,6 +23,7 @@ cuicui_install() {
   mkdir $TOCTOC_LOG_PATH
   touch /var/log/toctoc/cuicui.log
   cp cuicui/cuicui /etc/init.d/
+  apt-get install chkconfig
   chkconfig cuicui on
 	echo "Copied the cuicui daemon script to /etc/init.d/"
   autosshdaemon_install
@@ -50,12 +51,12 @@ case "$1" in
 	;;
   toctoc)
 	echo "Installing the toctoc scripts"
-	cuicui_install
+	toctoc
 	echo "."
 	;;
   cuicui)
 	echo "Installing the cuicui scripts"
-  toctoc_install
+  cuicui_install
 	echo "."
 	;;
   *)
