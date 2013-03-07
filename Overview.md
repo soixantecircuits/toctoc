@@ -53,6 +53,34 @@ You can now go back to your computer and run
 $ ssh pi@raspberrypi.local
 ```
 
-# Monitor a hashtag with the Twitter API
+# Tweet from the Raspberry Pi
+
+You toctoc will be tweeting from a twitter account. You can choose to use your own twitter account or create a new one [here](https://twitter.com/signup).
+
+We will authenticate to Twitter using OAuth. The toctoc twitter application exists, so you can use it's consumer_key and consumer_secret. But if you want to register your own application, you can do that on [Twitter Developer Page](https://dev.twitter.com/apps/new).
+
+# Get the python scripts to start tweeting
+
+## Get the twitter library
+
+```
+$ sudo apt-get update
+$ sudo apt-get install git python-pip
+$ git clone https://github.com/sixohsix/twitter.git
+$ cd twitter
+$ sudo python setup.py install
+
+
+
+$ cd ..
+$ git clone https://github.com/serverdensity/python-daemon.git
+$ cd python-daemon
+$ python setup.py
+```
+
+#TODO
+
+* script to test tweet
+* script to test button
 
 
