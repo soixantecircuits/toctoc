@@ -26,5 +26,5 @@ oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDS)
 twitter = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_K3Y, CONSUMER_S3CR3T))
 
 #tweet
-randomstatus = ''.join(random.sample("abcdefghijklmnopqrstuvwxyz", 5)) + "ffff! Someone knocked on the door! Who\'s that? #toctoc cc @zsiangle @gabrielstuff @egeoffray"
+randomstatus = "Hello @toctocParis, I'm going through the toctoc tutorial: http://soixantecircuits.github.com/toctoc"
 twitter.statuses.update(status=randomstatus)

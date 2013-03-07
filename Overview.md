@@ -65,11 +65,19 @@ We will authenticate to Twitter using OAuth. The toctoc twitter application exis
 
 ```
 $ sudo apt-get update
-$ sudo apt-get install git python-pip
+$ sudo apt-get install git python-pip vim
 $ git clone https://github.com/sixohsix/twitter.git
 $ cd twitter
 $ sudo python setup.py install
+$ cd ..
+```
 
+We have no all the tools to start tweeting!
+
+## Get toctoc
+
+```
+$ git clone https://github.com/soixantecircuits/toctoc.git
 
 
 $ cd ..
