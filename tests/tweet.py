@@ -28,3 +28,4 @@ twitter = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_K3Y, CONSUMER_S
 #tweet
 randomstatus = "Hello @toctocParis, I'm going through the toctoc tutorial: http://soixantecircuits.github.com/toctoc"
 twitter.statuses.update(status=randomstatus)
+print "You tweeted to the world! Check that on your twitter page"

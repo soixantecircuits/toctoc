@@ -51,7 +51,7 @@ case "$1" in
 	;;
   toctoc)
 	echo "Installing the toctoc scripts"
-	toctoc
+	toctoc_install
 	echo "."
 	;;
   cuicui)
