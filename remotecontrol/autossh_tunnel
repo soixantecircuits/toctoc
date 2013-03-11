@@ -32,11 +32,12 @@ MPORT=$((TUNNELPORT+1))
 # the ssh tunnel to setup
 TUNNEL="-p $SERVERPORT -R $TUNNELPORT:localhost:22"
 # remote user
-RUSER="emmanuel"
+RUSER="userofserver"
 # remote server
-RSERVER="soixantecircuits.fr"
+RSERVER="serveur.com"
 # You must use the real autossh binary, not a wrapper.
 DAEMON=/usr/lib/autossh/autossh
+#DAEMON=/usr/bin/autossh
 #
 ## END SETTINGS
 
@@ -46,6 +47,7 @@ NAME=`basename $0`
 PIDFILE=/var/run/${NAME}.pid
 SCRIPTNAME=/etc/init.d/${NAME}
 DESC="the tunnel"
+USER=pi
 
 test -x $DAEMON || exit 0
 
@@ -55,13 +57,15 @@ ASOPT=${TUNNEL}" -f -N "${RUSER}"@"${RSERVER}
 
 #	Function that starts the daemon/service.
 d_start() {
-	start-stop-daemon --start --quiet --pidfile $PIDFILE \
+  touch $PIDFILE
+  chown $USER $PIDFILE
+	start-stop-daemon --start --chuid $USER --user $USER --pidfile $PIDFILE \
 		--exec $DAEMON -- $ASOPT
 	if [ $? -gt 0 ]; then
 	    echo -n " not started (or already running)"
 	else
 	    sleep 1
-	    start-stop-daemon --stop --quiet --pidfile $PIDFILE \
+	    start-stop-daemon --stop --user $USER --quiet --pidfile $PIDFILE \
 		--test --exec $DAEMON > /dev/null || echo -n " not started"
 	fi
 
@@ -69,7 +73,7 @@ d_start() {
 
 #	Function that stops the daemon/service.
 d_stop() {
-	start-stop-daemon --stop --quiet --pidfile $PIDFILE \
+	start-stop-daemon --stop --user $USER --quiet --pidfile $PIDFILE \
 		--exec $DAEMON \
 		|| echo -n " not running"
 }
