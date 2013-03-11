@@ -38,17 +38,20 @@ class App(Daemon):
             twitter = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_K3Y, CONSUMER_S3CR3T))
             logger.info('Twitter OAuth successful')
 
+            oldValue = True
             while True:
-              if ( GPIO.input(14) == False ):
+              value = GPIO.input(14)
+              if ( value == False and value != oldValue):
                   os.system('mpg321 ' + TOCTOC_PATH + 'ding.mp3 &')
-                  randomstatus = ''.join(random.sample("abcdefghijklmnopqrstuvwxyz", 5)) + "ffff! Someone toctoced on the door! Who\'s that? #toctoc cc @zsiangle @gabrielstuff @egeoffray"
+                  randomstatus = ''.join(random.sample("abcdefghijklmnopqrstuvwxyzčćšđž", 5)) + "ffff! Someone knocked on the door! Who\'s that? #toctoc cc @zsiangle @gabrielstuff @egeoffray @shiyuewang @draga_t @Soixanteci"
                   try:
                     twitter.statuses.update(status=randomstatus)
                   except TwitterHTTPError as e:
-                    #os.system('mpg321 ' + TOCTOC_PATH + 'ding.mp3 &')
+                    os.system('mpg321 ' + TOCTOC_PATH + 'what.mp3 &')
                     raise e
-                  #os.system('mpg321 ' + TOCTOC_PATH + 'ding.mp3 &')
+                  os.system('mpg321 ' + TOCTOC_PATH + 'what.mp3 &')
                   logger.info(randomstatus)
+              oldValue = value
               sleep(0.05);
           except TwitterHTTPError as e:
             logger.error(e)
