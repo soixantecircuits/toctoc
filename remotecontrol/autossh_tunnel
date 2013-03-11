@@ -11,7 +11,7 @@
 #
 
 ### BEGIN INIT INFO
-# Provides:           toctoc
+# Provides:           autossh_tunnel
 # Required-Start:
 # Should-Start:
 # Required-Stop:
@@ -32,9 +32,9 @@ MPORT=$((TUNNELPORT+1))
 # the ssh tunnel to setup
 TUNNEL="-p $SERVERPORT -R $TUNNELPORT:localhost:22"
 # remote user
-RUSER="userofserver"
+RUSER="emmanuel"
 # remote server
-RSERVER="serveur.com"
+RSERVER="ks31596.kimsufi.com"
 # You must use the real autossh binary, not a wrapper.
 DAEMON=/usr/lib/autossh/autossh
 #DAEMON=/usr/bin/autossh
