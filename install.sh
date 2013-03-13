@@ -2,6 +2,12 @@
 TOCTOC_PATH="/usr/share/toctoc"
 TOCTOC_LOG_PATH="/var/log/toctoc"
 
+tools_install() {
+  apt-get update
+  apt-get install avahi-daemon git python-dev python-pip vim mpg321 autossh
+
+}
+
 toctoc_install() {
   # TODO: install python libs: twitter, GPIO
   mkdir $TOCTOC_PATH
@@ -46,8 +52,14 @@ autosshdaemon_install() {
 case "$1" in
   project)
 	echo "Installing the toctoc project"
+	tools_install
 	cuicui_install
   toctoc_install
+	echo "."
+	;;
+  tools)
+	echo "Installing tools for the toctoc project"
+	tools_install
 	echo "."
 	;;
   toctoc)

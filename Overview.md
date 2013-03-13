@@ -68,7 +68,7 @@ We will authenticate to Twitter using OAuth. The toctoc twitter application exis
 
 ```
 $ sudo apt-get update
-$ sudo apt-get install git python-dev python-pip mpg321 vim
+$ sudo apt-get install git python-dev python-pip vim mpg321
 $ git clone https://github.com/sixohsix/twitter.git
 $ cd twitter
 $ sudo python setup.py install
@@ -124,12 +124,108 @@ Install the Raspberr PY GPIO library:
 sudo pip install RPi.GPIO
 ```
 
+Run the test script
 
-$ cd ..
-$ git clone https://github.com/serverdensity/python-daemon.git
-$ cd python-daemon
-$ python setup.py
 ```
+$ sudo python push-button.py
+```
+
+Press the button, and see a cross between the brackets, yay!
+Plug some speakers to the Pi and you'll hear a sound too, wouhou!
+Press Ctrl+C to close.
+
+# Run toctoc as a daemon
+
+Install the python daemon library
+
+```
+$ cd
+$ git clone https://github.com/serverdensity/python-daemon.git
+$ sudo cp python-daemon/daemon.py /usr/local/lib/python2.7/dist-packages/
+```
+
+
+We can tweet. We can push a button. We have both run together in the toctoc script.
+Check it out here:
+
+```
+$ sudo vim /usr/share/toctoc/toctoc.py
+```
+
+You can edit it for you own convenience. Remember that you can't tweet twice the same message!
+And then start the daemon:
+
+```
+$ sudo service toctoc start
+```
+
+The toctoc service will now start each time you power your Raspberry Pi.
+
+# What's going on with the daemon? What is it doing?
+
+A daemon is running in the background, so it's pretty hard to know what it's doing. How can you know there is a bug with the network? That your account is not allowed to tweet anymore...
+No worries, check the log:
+
+```
+$ tail -f /var/log/toctoc/toctoc.log
+```
+
+Press Ctrl+C to close.
+
+# Remotely connect
+
+You're in a local network with your Raspberry Pi now. You know how to do a ssh pi@raspberrypi.
+But what if you want to connect to it from a remote location. Your office, your home, in the bus...
+Well, you can do some annoying port forwarding in your router.
+Or you can simply open a ssh tunnel from the raspberry to a computer you know is always connected, e.g. a server.
+You can do a ssh to your server and then ssh from that server to your raspberry.
+
+We got you covered, the install.sh script installed this for you, but now you need to edit the script for your server.
+
+```
+sudo vim /etc/init.d/autossh_tunnel 
+```
+
+Set you server's adress, ssh port, your login, etc.
+Give a port number. It will be used to connect from your server.
+The default value is 60000.
+Number your ports with a step of 3, ie. host1: port 60000 for the tunnel, 60001 and 60002 will be used for autossh monitoring
+host2: port 60003, 60004 and 60005 will be used for port monitoring, etc.
+
+## Register your Raspberry Pi to allow connecting it to your server:
+
+```
+ssh-keygen -t rsa -C "$(whoami)@$(hostname)-$(date -I)"
+ssh-copy-id 'username@remote-server.org -p 22'
+```
+
+Press enter for both questions.
+
+
+Test that the info you entered in autossh_tunnel are corrects:
+```
+ ssh -p SERVERPORT -R TUNNELPORT:localhost:22 -f -N RUSER@RSERVER
+```
+
+Try to connect from your server:
+
+```
+$ ssh you@yourserver
+$ ssh pi@localhost -p 60000
+```
+
+If everything is okay, you can run the daemon,
+```
+$ sudo service autossh_tunnel start
+```
+
+If
+tail -f /var/log/syslog | grep autossh
+
+
+
+
+
 
 #TODO
 
