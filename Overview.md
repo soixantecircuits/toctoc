@@ -229,7 +229,5 @@ tail -f /var/log/syslog | grep autossh
 
 #TODO
 
-* script to test tweet
-* script to test button
 * add git etc to the script install.sh
 * get the tools first in the overview

@@ -19,12 +19,12 @@ class App(Daemon):
         while True:
           try:
             TOCTOC_PATH = '/usr/share/cuicui/'
-            CONSUMER_KEY = 'T4GFkDf0b6TT3YrXribSA'
-            CONSUMER_SECRET = 'U8IaRjhUTshCBMQfanLV3KhIpEJsD1kBaejYwBNaB1A'
-            MY_TWITTER_CREDS = TOCTOC_PATH + '.ringthebell_credentials'
+            CONSUMER_K3Y = 'WklI49k0O3Z2ZuMKgOQaBg'
+            CONSUMER_S3CR3T = 'E27Dt7NnTYVIswqsz4o5r8U1o2VJ0ekbF7vOC1iTlg'
+            MY_TWITTER_CREDS = TOCTOC_PATH + '.toctoc_credentials'
             logger.debug("TWITTER CREDS PATH: " + MY_TWITTER_CREDS)
             if not os.path.exists(MY_TWITTER_CREDS):
-                  oauth_dance("ringthebell", CONSUMER_KEY, CONSUMER_SECRET, MY_TWITTER_CREDS)
+                  oauth_dance("toctoc", CONSUMER_KEY, CONSUMER_SECRET, MY_TWITTER_CREDS)
 
             oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDS)
 
