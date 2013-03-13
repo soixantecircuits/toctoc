@@ -18,7 +18,7 @@ class App(Daemon):
 
         while True:
           try:
-            TOCTOC_PATH = '/usr/share/cuicui/'
+            TOCTOC_PATH = '/usr/share/toctoc/'
             CONSUMER_K3Y = 'WklI49k0O3Z2ZuMKgOQaBg'
             CONSUMER_S3CR3T = 'E27Dt7NnTYVIswqsz4o5r8U1o2VJ0ekbF7vOC1iTlg'
             MY_TWITTER_CREDS = TOCTOC_PATH + '.toctoc_credentials'
