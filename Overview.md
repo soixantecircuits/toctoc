@@ -219,8 +219,17 @@ If everything is okay, you can run the daemon,
 $ sudo service autossh_tunnel start
 ```
 
-If
+If you have nay issue, check what's going on with
 tail -f /var/log/syslog | grep autossh
+
+To resume:
+```
+$ git clone https://github.com/soixantecircuits/toctoc.git
+$ vim remotecontrol/autossh_tunnel
+$ ssh-copy-id playcks@ks3326340.kimsufi.com
+$ sudo sh install.sh autossh
+$ sudo service autossh_tunnel start
+```
 
 
 
