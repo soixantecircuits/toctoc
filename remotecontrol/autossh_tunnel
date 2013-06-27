@@ -26,15 +26,15 @@
 ## SETTINGS
 #
 # autossh monitoring port (unique)
-TUNNELPORT=60000 
-SERVERPORT=18522
+TUNNELPORT=60008 
+SERVERPORT=22
 MPORT=$((TUNNELPORT+1))
 # the ssh tunnel to setup
 TUNNEL="-p $SERVERPORT -R $TUNNELPORT:localhost:22"
 # remote user
-RUSER="emmanuel"
+RUSER="playcks"
 # remote server
-RSERVER="ks31596.kimsufi.com"
+RSERVER="ks3326340.kimsufi.com"
 # You must use the real autossh binary, not a wrapper.
 DAEMON=/usr/lib/autossh/autossh
 #DAEMON=/usr/bin/autossh
@@ -47,7 +47,7 @@ NAME=`basename $0`
 PIDFILE=/var/run/${NAME}.pid
 SCRIPTNAME=/etc/init.d/${NAME}
 DESC="the tunnel"
-USER=pi
+USER=soixantecircuits
 
 test -x $DAEMON || exit 0
 

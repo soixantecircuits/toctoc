@@ -4,7 +4,7 @@ TOCTOC_LOG_PATH="/var/log/toctoc"
 
 tools_install() {
   apt-get update
-  apt-get install avahi-daemon git python-dev python-pip vim mpg321 autossh
+  apt-get install avahi-daemon git python-dev python-pip vim mpg321 autossh chkconfig
 
 }
 
@@ -17,7 +17,6 @@ toctoc_install() {
   mkdir $TOCTOC_LOG_PATH
   touch /var/log/toctoc/toctoc.log
   cp toctoc/toctoc /etc/init.d/
-  apt-get install chkconfig
   chkconfig toctoc on
 	echo "Copied the toctoc daemon script to /etc/init.d/"
   autosshdaemon_install
@@ -30,7 +29,6 @@ cuicui_install() {
   mkdir $TOCTOC_LOG_PATH
   touch /var/log/toctoc/cuicui.log
   cp cuicui/cuicui /etc/init.d/
-  apt-get install chkconfig
   chkconfig cuicui on
 	echo "Copied the cuicui daemon script to /etc/init.d/"
   autosshdaemon_install
@@ -44,8 +42,9 @@ autosshdaemon_install() {
   # TODO: install chkconfig
   apt-get install autossh
   cp remotecontrol/autossh_tunnel /etc/init.d/
-  chkconfig autossh_tunnel on
+  update-rc.d autossh_tunnel defaults
 	echo "Copied the autossh_tunnel daemon scripts to /etc/init.d/"
+	echo "Please modify it selon your config"
 }
 
 
@@ -60,6 +59,11 @@ case "$1" in
   tools)
 	echo "Installing tools for the toctoc project"
 	tools_install
+	echo "."
+	;;
+  autossh)
+	echo "Installing autossh deamon"
+	autosshdaemon_install
 	echo "."
 	;;
   toctoc)
