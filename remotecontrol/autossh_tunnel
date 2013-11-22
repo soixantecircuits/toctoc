@@ -26,7 +26,7 @@
 ## SETTINGS
 #
 # autossh monitoring port (unique)
-TUNNELPORT=60032 
+TUNNELPORT=60000 
 SERVERPORT=22
 MPORT=$((TUNNELPORT+1))
 # the ssh tunnel to setup
