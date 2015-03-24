@@ -10,7 +10,7 @@ remote_hostname = 'ks3326340.kimsufi.com'
 remote = remote_username + '@' + remote_hostname
 os.system('ssh-copy-id ' + remote)
 
-# find an unsed port
+# find an unused port
 port = 60000
 os.system('scp ' + remote + ':.ssh/config .')
 configfile =  open("config","a+")
@@ -22,10 +22,11 @@ if (len(numbers) > 0):
 print "Using tunnel port " + str(port)
 
 # Modify files with this new port
-os.system("sed -i 's/60000/" + str(port) + "/' autossh_tunnel")
-os.system("sed -i 's/kan/" + remote_username + "/' autossh_tunnel")
-os.system("sed -i 's/ks3326340.kimsufi.com/" + remote_hostname + "/' autossh_tunnel")
-os.system("sed -i 's/minad/" + os.getlogin() + "/' autossh_tunnel")
+os.system("cp autossh_tunnel autossh_tunnel_temp")
+os.system("sed -i 's/60000/" + str(port) + "/' autossh_tunnel_temp")
+os.system("sed -i 's/kan/" + remote_username + "/' autossh_tunnel_temp")
+os.system("sed -i 's/ks3326340.kimsufi.com/" + remote_hostname + "/' autossh_tunnel_temp")
+os.system("sed -i 's/minad/" + os.getlogin() + "/' autossh_tunnel_temp")
 configfile.write("\nHost " + gethostname())
 configfile.write("\n    HostName localhost")
 configfile.write("\n    Port " + str(port))
@@ -37,7 +38,7 @@ os.system('scp config ' + remote + ':.ssh/')
 
 # install autossh daemon
 os.system('sudo apt-get install autossh openssh-server')
-os.system('sudo cp autossh_tunnel /etc/init.d/')
+os.system('sudo mv autossh_tunnel_temp /etc/init.d/autossh_tunnel')
 os.system('sudo update-rc.d autossh_tunnel defaults')
 os.system('sudo service autossh_tunnel start')
 
